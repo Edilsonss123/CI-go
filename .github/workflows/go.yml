@@ -14,12 +14,14 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      BD_HOST: "Machine IP: ${{ runner.ip }}"
+      BD_HOST: ""
     steps:
     - uses: actions/checkout@v3
 
     - name: Get IP Address
-      run: echo "DEPLOYED_IP=$(curl -s ifconfig.me)" >> $GITHUB_ENV
+      run: |
+          DEPLOYED_IP=$(curl -s ifconfig.me)
+          echo "DEPLOYED_IP=$DEPLOYED_IP" >> $GITHUB_ENV
 
     - name: Set up Go
       uses: actions/setup-go@v4
