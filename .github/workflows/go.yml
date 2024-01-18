@@ -19,6 +19,11 @@ jobs:
         os: ['ubuntu-latest']
     env:
       BD_HOST: 'localhost'
+      DB_HOST: 'postgres'
+      DB_PASSWORD: 'root'
+      DB_NAME: 'root'
+      DB_PORT: '5432'
+      
     steps:
     - uses: actions/checkout@v3
 
