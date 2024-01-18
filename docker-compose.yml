@@ -25,7 +25,10 @@ services:
     networks:
       - my_network
     environment:
-      - BD_HOST=postgres
+      - DB_HOST=postgres
+      - DB_PASSWORD=root
+      - DB_NAME=root
+      - DB_PORT=5432
       
   pgadmin-compose:
     image: dpage/pgadmin4
