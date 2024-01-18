@@ -27,6 +27,9 @@ jobs:
     - name: Create-DB
       run: docker-compose up -d
     
+    - name: Download Depency
+      run: go mod download
+
     - name: Test
       run: go test -v ./app/main_test.go
 
