@@ -32,7 +32,7 @@ jobs:
       run: docker-compose build
 
     - name: Create-DB
-      run: docker-compose up -d && sleep 10 && docker-compose ps
+      run: docker-compose up  && sleep 10 && docker-compose ps
     
     - name: Update Depency
       working-directory: ./app
