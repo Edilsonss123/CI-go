@@ -24,7 +24,9 @@ services:
       - postgres
     networks:
       - my_network
-
+    environment:
+      - BD_HOST=postgres
+      
   pgadmin-compose:
     image: dpage/pgadmin4
     environment:

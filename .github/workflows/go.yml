@@ -13,6 +13,8 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    env:
+      BD_HOST: 'localhost'
     steps:
     - uses: actions/checkout@v3
 
