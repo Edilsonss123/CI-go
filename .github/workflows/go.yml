@@ -52,4 +52,4 @@ jobs:
 
     - name: Build
       working-directory: ./app
-      run: go build -v ./app/main.go
+      run: go build -v main.go
