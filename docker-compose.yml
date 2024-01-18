@@ -10,6 +10,8 @@ services:
       - "5432:5432"
     volumes:
       - ./postgres-data:/var/lib/postgresql/data  
+    networks:
+      - my_network
 
   app-go:
     image: golang
@@ -20,7 +22,9 @@ services:
     command: "tail -f /dev/null"
     depends_on:
       - postgres
-      
+    networks:
+      - my_network
+
   pgadmin-compose:
     image: dpage/pgadmin4
     environment:
@@ -30,4 +34,9 @@ services:
       - "54321:80"
     depends_on:
       - postgres
+    networks:
+      - my_network
 
+networks:
+  my_network:
+    driver: bridge
