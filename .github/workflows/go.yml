@@ -14,14 +14,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      BD_HOST: ""
+      BD_HOST: 'localhost'
     steps:
     - uses: actions/checkout@v3
-
-    - name: Get IP Address
-      run: |
-          DEPLOYED_IP=$(curl -s ifconfig.me)
-          echo "DEPLOYED_IP=$DEPLOYED_IP" >> $GITHUB_ENV
 
     - name: Set up Go
       uses: actions/setup-go@v4
@@ -32,7 +27,7 @@ jobs:
       run: docker-compose build
 
     - name: Create-DB
-      run: docker-compose up  && sleep 10 && docker-compose ps
+      run: docker-compose up -d && docker-compose ps
     
     - name: Update Depency
       working-directory: ./app
