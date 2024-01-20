@@ -21,6 +21,7 @@ jobs:
       DB_PASSWORD: 'root'
       DB_NAME: 'root'
       DB_PORT: '5432'
+      SUPER_SECRET: ${{ secrets.SuperSecret }}
 
     steps:
     - uses: actions/checkout@v3
@@ -37,7 +38,7 @@ jobs:
       run: docker-compose build
 
     - name: Create-DB
-      run: docker-compose up -d && docker-compose ps
+      run: docker-compose up -d && docker-compose ps && echo $SUPER_SECRET
 
     - name: Update Depency
       working-directory: ./app
