@@ -1,0 +1,68 @@
+
+name: Go
+
+on:
+  push:
+    branches: [ "*" ]
+  pull_request:
+    branches: [ "*" ]
+
+jobs:
+
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        go_version: ['1.18']
+        os: ['ubuntu-latest']
+    env:
+      DB_HOST: 'localhost'
+      DB_USER: 'root'
+      DB_PASSWORD: 'root'
+      DB_NAME: 'root'
+      DB_PORT: '5432'
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: ${{ matrix.go_version }}
+
+    - name: Build-DB 
+      run: docker-compose build
+
+    - name: Create-DB
+      run: docker-compose up -d && docker-compose ps
+
+    - name: Update Depency
+      working-directory: ./app
+      run: go mod tidy
+
+    - name: Test
+      working-directory: ./app
+      run: go test -v main_test.go
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      working-directory: ./app
+      run: go build -v main.go
+
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4.2.0
+      with:
+        # Artifact name
+        name: programa
+        # A file, directory or wildcard pattern that describes what to upload
+        path: app/main
+
+
+  docker:
+   needs: build
+   uses: ./.github/workflows/Docker.yml
+   secrets: inherit
