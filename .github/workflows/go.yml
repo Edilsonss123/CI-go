@@ -38,8 +38,7 @@ jobs:
       run: docker-compose build
 
     - name: Create-DB
-      run: docker-compose up -d && docker-compose ps && echo $SUPER_SECRET
-
+      run: docker-compose up -d && docker-compose ps
     - name: Update Depency
       working-directory: ./app
       run: go mod tidy
