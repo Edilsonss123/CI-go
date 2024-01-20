@@ -8,8 +8,8 @@ on:
     branches: [ "*" ]
 
 jobs:
-
   test:
+    environment: "GO/CI"
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
