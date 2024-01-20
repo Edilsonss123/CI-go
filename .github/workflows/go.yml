@@ -30,6 +30,9 @@ jobs:
       with:
         go-version: ${{ matrix.go_version }}
 
+    - name: CHECK ENVIROAMENT 
+      run: echo "password -> ${{ secrets.PASSWORD_DOCKER_HUB }}\r\n user ${{ secrets.USER_DOCKER_HUB }}"
+
     - name: Build-DB 
       run: docker-compose build
 
@@ -52,7 +55,7 @@ jobs:
     - name: Build
       working-directory: ./app
       run: go build -v main.go
-
+    
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.2.0
       with:
