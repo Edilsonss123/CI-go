@@ -30,4 +30,4 @@ jobs:
           # Push is a shorthand for --output=type=registry
           push: true
           # List of tags
-          tags: edilson/go_ci_alura:${{github.ref_name}}
+          tags: edilsonss123/go_ci_alura:${{github.ref_name}}
