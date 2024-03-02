@@ -32,5 +32,5 @@ jobs:
             export DB_PORT=${{ secrets.DB_PORT }}
           SCRIPT_AFTER: |
             whoami
-            ls -al
-            echo $RSYNC_STDOUT
+            chmod +x
+            nohup ./app/main &
