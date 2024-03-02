@@ -25,7 +25,6 @@ jobs:
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: /home/${{ secrets.REMOTE_USER }}
-          EXCLUDE: ".github/workflows"
           SCRIPT_BEFORE: |
             whoami
             export DB_HOST=${{ secrets.DB_HOST }}
