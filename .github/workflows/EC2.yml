@@ -14,7 +14,6 @@ jobs:
         with:
           # Name of the artifact to download. If unspecified, all artifacts for the run are downloaded.
           name: programa
-          path: main
       - uses: actions/checkout@v3
 
       - name: Deploy to Staging server
