@@ -19,6 +19,8 @@ jobs:
       - name: Deploy to Staging server
         uses: easingthemes/ssh-deploy@main
         with:
+          context: .
+          folder: main
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
@@ -30,7 +32,7 @@ jobs:
             export DB_PASSWORD=${{ secrets.DB_PASSWORD }}
             export DB_NAME=${{ secrets.DB_NAME }}
             export DB_PORT=${{ secrets.DB_PORT }}
-          SCRIPT_AFTER: |
-            whoami
+            export PORT=8000
             chmod +x
-            nohup ./app/main &
+            nohup ./main > nohup.out 2 > nohup.err < /dev/null &
+            
