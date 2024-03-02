@@ -56,7 +56,7 @@ jobs:
       run: |
         cd app
         go build -o ../main -v main.go
-        ls ../
+        go build -o main -v main.go
 
     
     - name: Upload a Build Artifact
