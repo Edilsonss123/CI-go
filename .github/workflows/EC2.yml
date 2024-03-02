@@ -6,38 +6,32 @@ on:
 jobs:
 
   EC2:
-    runs-on: ubuntu-latest
+    environment: "GO/CI"
+    runs-on: "ubuntu-latest"
     steps:
     - name: Download a Build Artifact
-      uses: actions/download-artifact@v3.0.0
+      uses: actions/download-artifact@v4.1.1
       with:
-    # Artifact name
+        # Name of the artifact to download. If unspecified, all artifacts for the run are downloaded.
         name: programa
     - uses: actions/checkout@v3
-    
+
     - name: Deploy to Staging server
       uses: easingthemes/ssh-deploy@main
-      env:
+      with:
+        context: .
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
         REMOTE_USER: ${{ secrets.REMOTE_USER }}
         TARGET: /home/${{ secrets.REMOTE_USER }}
-        EXCLUDE: "postgres-data"
-        
-    - name: executing remote ssh commands using password
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.REMOTE_HOST }}
-        username: ${{ secrets.REMOTE_USER }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: 22
-        script: |
+        SCRIPT_BEFORE: |
+          whoami
           export DB_HOST=${{ secrets.DB_HOST }}
           export DB_USER=${{ secrets.DB_USER }}
           export DB_PASSWORD=${{ secrets.DB_PASSWORD }}
           export DB_NAME=${{ secrets.DB_NAME }}
           export DB_PORT=${{ secrets.DB_PORT }}
           export PORT=8000
-          chmod +x main
-          nohup ./main > nohup.out 2> nohup.err < /dev/null &
-        
+          chmod +x
+          nohup ./main > nohup.out 2 > nohup.err < /dev/null &
+          
