@@ -55,7 +55,6 @@ jobs:
       run: |
         cd app
         go build -o ../main -v main.go
-        go build -o main -v main.go
 
     
     - name: Upload a Build Artifact
@@ -64,7 +63,7 @@ jobs:
     # Artifact name
         name: programa
     # A file, directory or wildcard pattern that describes what to upload
-        path: ./app/main
+        path: ./main
 
 
   docker:
