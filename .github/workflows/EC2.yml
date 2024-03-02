@@ -9,13 +9,17 @@ jobs:
     environment: "GO/CI"
     runs-on: "ubuntu-latest"
     steps:
+    - uses: actions/checkout@v3
+    
     - name: Download a Build Artifact
       uses: actions/download-artifact@v4.1.1
       with:
         # Name of the artifact to download. If unspecified, all artifacts for the run are downloaded.
         name: programa
-    - uses: actions/checkout@v3
-
+        
+    - name: CHECK Files 
+      run: ls
+      
     - name: Deploy to Staging server
       uses: easingthemes/ssh-deploy@main
       with:
