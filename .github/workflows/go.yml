@@ -53,7 +53,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build
-      run: go build -v -o ./main ./app/main.go
+      run: |
+        cd app
+        go build -v -o ../main
 
     
     - name: Upload a Build Artifact
