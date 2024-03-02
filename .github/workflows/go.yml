@@ -55,13 +55,16 @@ jobs:
     - name: Build
       run: |
         cd app
-        go build -v -o ../main
+        go build -v main.go -o ../main
+        ls ../
 
     
     - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v4.2.0
+      uses: actions/upload-artifact@v3.1.0
       with:
+    # Artifact name
         name: programa
+    # A file, directory or wildcard pattern that describes what to upload
         path: main
 
 
