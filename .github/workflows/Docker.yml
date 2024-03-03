@@ -26,6 +26,7 @@ jobs:
     # Preparar os arquivos necessários
     - name: Prepare Files
       run: |
+        ls
         mkdir -p myapp
         cp ./main ./myapp/main
         chmod +x ./myapp/main # Garantir que o arquivo é executável
