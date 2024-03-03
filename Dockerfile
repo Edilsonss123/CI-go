@@ -9,7 +9,7 @@ ENV USER=root PASSWORD=root DBNAME=root
 
 ARG STAGE_DEPLOY=true
 
-RUN if [ "$STAGE_DEPLOY" = "true" ]; then \
+RUN if [ "$STAGE_DEPLOY" = true ]; then \
         COPY ./main main; \
     fi
 
