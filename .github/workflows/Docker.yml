@@ -18,7 +18,10 @@ jobs:
       with:
         # Name of the artifact to download. If unspecified, all artifacts for the run are downloaded.
         name: programa
-        
+
+    - name: Debug Environment Variables
+      run: env
+
     - name: CHECK STAGE_DEPLOY
       run: echo "STAGE_DEPLOY $STAGE_DEPLOY"
       env:
