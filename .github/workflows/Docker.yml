@@ -20,7 +20,10 @@ jobs:
         name: programa
         
     - name: CHECK STAGE_DEPLOY
-      run: echo "STAGE_DEPLOY ${{ env.STAGE_DEPLOY }}"
+      run: echo "STAGE_DEPLOY $STAGE_DEPLOY"
+      env:
+        STAGE_DEPLOY: ${{ env.STAGE_DEPLOY }}
+
       
     - name: Docker Login
       # You may pin to the exact commit or the version.
@@ -43,5 +46,3 @@ jobs:
           push: true
           # List of tags
           tags: edilsonss123/go_ci_alura:${{github.ref_name}}
-          build_args: |
-            STAGE_DEPLOY=${{ env.STAGE_DEPLOY }}
