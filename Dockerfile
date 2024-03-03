@@ -9,9 +9,8 @@ ENV USER=root PASSWORD=root DBNAME=root
 
 ARG STAGE_DEPLOY=true
 
-RUN /bin/bash -c 'if [ "$STAGE_DEPLOY" = "true" ]; then \
-        echo "Copying ./main to main" && \
+RUN if [ "$STAGE_DEPLOY" = "true" ]; then \
         COPY ./main main; \
-    fi'
+    fi
 
 CMD [ "./main" ]
