@@ -15,6 +15,6 @@ RUN echo "Checking STAGE_DEPLOY: $STAGE_DEPLOY" && \
         COPY ./main main; \
     fi
     
-RUN chmod +x main
+RUN chmod +x ./main
 
-ENTRYPOINT [ "/app/main" ]
+CMD [ "./main" ]
