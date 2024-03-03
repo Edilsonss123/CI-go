@@ -47,4 +47,4 @@ jobs:
           # List of tags
           tags: edilsonss123/go_ci_alura:${{github.ref_name}}
           build-args: |
-            STAGE_DEPLOY=$STAGE_DEPLOY
+            STAGE_DEPLOY=true
