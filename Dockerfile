@@ -7,11 +7,11 @@ ENV HOST=localhost DBPORT=5432
 
 ENV USER=root PASSWORD=root DBNAME=root
 
-ARG STAGE_DEPLOY
+ARG STAGE_DEPLOY=true
 
-RUN if [ $STAGE_DEPLOY" = "true ]; then \
+RUN if [ "$STAGE_DEPLOY" = "true" ]; then \
         echo "Copying ./main to main" && \
         COPY ./main main; \
     fi
-    
+
 CMD [ "./main" ]
