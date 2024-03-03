@@ -15,6 +15,4 @@ RUN echo "Checking STAGE_DEPLOY: $STAGE_DEPLOY" && \
         COPY ./main main; \
     fi
     
-RUN chmod +x ./main
-
 CMD [ "./main" ]
