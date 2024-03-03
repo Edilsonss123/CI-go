@@ -13,4 +13,5 @@ RUN apt-get update && apt-get install -y \
     curl \
     vim
 #CMD ["tail", "-f", "/dev/null"]
+CMD ls
 CMD [ "./main" ]
