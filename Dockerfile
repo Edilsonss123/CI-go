@@ -12,7 +12,9 @@ ARG STAGE_DEPLOY
 RUN echo "Checking STAGE_DEPLOY: $STAGE_DEPLOY" && \
     if [ "$STAGE_DEPLOY" = "true" ]; then \
         echo "Copying ./main to main" && \
-        COPY ./main main; \
+        COPY ./main /app/main; \
     fi
+    
+RUN chmod +x /app/main
 
-ENTRYPOINT [ "/main" ]
+ENTRYPOINT [ "/app/main" ]
