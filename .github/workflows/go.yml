@@ -30,9 +30,6 @@ jobs:
       with:
         go-version: ${{ matrix.go_version }}
 
-    - name: CHECK ENVIROAMENT 
-      run: echo "password -> ${{ secrets.PASSWORD_DOCKER_HUB }}\r\n user ${{ secrets.USER_DOCKER_HUB }}"
-
     - name: Build-DB 
       run: docker-compose build
 
@@ -69,7 +66,7 @@ jobs:
    secrets: inherit 
 
 
-  deploy-ec2:
-   needs: build
-   uses: ./.github/workflows/EC2.yml
-   secrets: inherit 
+#  deploy-ec2:
+#   needs: build
+#   uses: ./.github/workflows/EC2.yml
+#   secrets: inherit 
